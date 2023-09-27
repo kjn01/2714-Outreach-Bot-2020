@@ -17,7 +17,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static class ShooterConstants {
-    public static final int kLeftShooterMotorCanId = 0; // TBD
-    public static final int kRightShooterMotorCanId = 0; // TBD
+    public static final int kLeftShooterMotorCanId = 11; // TBD
+    public static final int kRightShooterMotorCanId = 12; // TBD
   }
 }

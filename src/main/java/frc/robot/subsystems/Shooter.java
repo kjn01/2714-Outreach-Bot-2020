@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
@@ -24,6 +25,7 @@ public class Shooter extends SubsystemBase {
 
   private PIDController shooterController;
   private SimpleMotorFeedforward shooterFeedforward;
+  private boolean shooting = false;
 
   public Shooter() {
     leftShooterMotor = new CANSparkMax(ShooterConstants.kLeftShooterMotorCanId, MotorType.kBrushless);
@@ -39,21 +41,28 @@ public class Shooter extends SubsystemBase {
     leftShooterMotor.setIdleMode(IdleMode.kCoast);
     rightShooterMotor.setIdleMode(IdleMode.kCoast);
 
+    shooterController = new PIDController(0, 0, 0);
+
     shooterController.setP(0.0006);
     shooterFeedforward = new SimpleMotorFeedforward(0, 0.13, 2.22);
   }
 
-  public void setToShoot() {
-    shooterController.setSetpoint(10);
+  public void setToShoot(double volts) {
+    leftShooterMotor.setVoltage(volts);
+    shooting = true;
+    // shooterController.setSetpoint(1);
   }
 
   public void setToStop() {
+    leftShooterMotor.setVoltage(0);
+    shooting = false;
     shooterController.setSetpoint(0);
   }
 
   @Override
   public void periodic() {
+    SmartDashboard.putBoolean("shooting", shooting);
     // This method will be called once per scheduler run
-    leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()) + shooterFeedforward.calculate(10, 20));
+    // leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()) + shooterFeedforward.calculate(1, 2));
   }
 }

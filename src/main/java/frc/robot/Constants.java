@@ -17,7 +17,11 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static class ShooterConstants {
-    public static final int kLeftShooterMotorCanId = 11; // TBD
-    public static final int kRightShooterMotorCanId = 12; // TBD
+    public static final int kLeftShooterMotorCanId = 11;
+    public static final int kRightShooterMotorCanId = 12;
+  }
+  public static class ConveyorConstants {
+    public static final int kHorizontalConveyorMotorCanId = 0; // TBD
+    public static final int kVerticalConveyorMotorCanId = 0; // TBD
   }
 }

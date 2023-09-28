@@ -47,22 +47,20 @@ public class Shooter extends SubsystemBase {
     shooterFeedforward = new SimpleMotorFeedforward(0, 0.13, 2.22);
   }
 
-  public void setToShoot(double volts) {
-    leftShooterMotor.setVoltage(volts);
+  public void setToShoot(double speed) {
+    shooterController.setSetpoint(speed);
     shooting = true;
-    // shooterController.setSetpoint(1);
   }
 
   public void setToStop() {
-    leftShooterMotor.setVoltage(0);
     shooting = false;
     shooterController.setSetpoint(0);
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putBoolean("shooting", shooting);
+    SmartDashboard.putBoolean("Shooting", shooting);
     // This method will be called once per scheduler run
-    // leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()) + shooterFeedforward.calculate(1, 2));
+    leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()));
   }
 }

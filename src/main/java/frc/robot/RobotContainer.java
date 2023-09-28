@@ -43,9 +43,9 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    m_driverController.x().onTrue(new InstantCommand(() -> m_shooter.setToShoot(5)))
+    m_driverController.x().onTrue(new InstantCommand(() -> m_shooter.setToShoot(1000)))
                           .onFalse(new InstantCommand(() -> m_shooter.setToStop()));
-    m_driverController.y().onTrue(new InstantCommand(() -> m_shooter.setToShoot(15)))
+    m_driverController.y().onTrue(new InstantCommand(() -> m_shooter.setToShoot(100)))
                           .onFalse(new InstantCommand(() -> m_shooter.setToStop()));
     m_driverController.rightBumper().whileTrue(new InstantCommand(() -> m_conveyor.intake()))
                                     .onFalse(new InstantCommand(() -> m_conveyor.stop()));

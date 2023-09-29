@@ -43,7 +43,7 @@ public class Shooter extends SubsystemBase {
 
     shooterController = new PIDController(0, 0, 0);
 
-    shooterController.setP(0.0006);
+    shooterController.setP(0.006);
     shooterFeedforward = new SimpleMotorFeedforward(0, 0.13, 2.22);
   }
 
@@ -61,6 +61,6 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putBoolean("Shooting", shooting);
     // This method will be called once per scheduler run
-    leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()));
+    leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()) + shooterFeedforward.calculate(shooterEncoder.getVelocity(), shooterController.getSetpoint()));
   }
 }

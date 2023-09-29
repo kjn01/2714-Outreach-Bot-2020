@@ -21,7 +21,7 @@ public final class Constants {
     public static final int kRightShooterMotorCanId = 12;
   }
   public static class ConveyorConstants {
-    public static final int kHorizontalConveyorMotorCanId = 9; // TBD
-    public static final int kVerticalConveyorMotorCanId = 10; // TBD
+    public static final int kHorizontalConveyorMotorCanId = 9;
+    public static final int kVerticalConveyorMotorCanId = 10;
   }
 }

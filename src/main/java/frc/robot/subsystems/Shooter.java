@@ -43,7 +43,7 @@ public class Shooter extends SubsystemBase {
 
     shooterController = new PIDController(0, 0, 0);
 
-    shooterController.setP(0.006);
+    shooterController.setP(0.5);
     shooterFeedforward = new SimpleMotorFeedforward(0, 0.13, 2.22);
 
     shooterController.setSetpoint(0);

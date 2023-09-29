@@ -45,7 +45,7 @@ public class RobotContainer {
   private void configureBindings() {
     m_driverController.x().onTrue(new InstantCommand(() -> m_shooter.setToShoot(1000)))
                           .onFalse(new InstantCommand(() -> m_shooter.setToStop()));
-    m_driverController.y().onTrue(new InstantCommand(() -> m_shooter.setToShoot(100)))
+    m_driverController.y().onTrue(new InstantCommand(() -> m_shooter.setToShoot(99999)))
                           .onFalse(new InstantCommand(() -> m_shooter.setToStop()));
     m_driverController.rightBumper().onTrue(new InstantCommand(() -> m_conveyor.intake()))
                                     .onFalse(new InstantCommand(() -> m_conveyor.stop()));

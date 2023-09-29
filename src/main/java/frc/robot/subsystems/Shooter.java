@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -23,7 +25,7 @@ public class Shooter extends SubsystemBase {
 
   private RelativeEncoder shooterEncoder;
 
-  private PIDController shooterController;
+  private SparkMaxPIDController shooterController;
   private SimpleMotorFeedforward shooterFeedforward;
   private boolean shooting = false;
 
@@ -41,28 +43,26 @@ public class Shooter extends SubsystemBase {
     leftShooterMotor.setIdleMode(IdleMode.kCoast);
     rightShooterMotor.setIdleMode(IdleMode.kCoast);
 
-    shooterController = new PIDController(0, 0, 0);
+    shooterController = leftShooterMotor.getPIDController();
 
-    shooterController.setP(0.5);
-    shooterFeedforward = new SimpleMotorFeedforward(0, 0.13, 2.22);
+    shooterController.setP(0.0006);
+    shooterController.setFF(0.000195);
 
-    shooterController.setSetpoint(0);
   }
 
   public void setToShoot(double speed) {
-    shooterController.setSetpoint(speed);
+    shooterController.setReference(speed, ControlType.kVelocity);
     shooting = true;
   }
 
   public void setToStop() {
     shooting = false;
-    shooterController.setSetpoint(0);
+    shooterController.setReference(0, ControlType.kVelocity);
   }
 
   @Override
   public void periodic() {
     SmartDashboard.putBoolean("Shooting", shooting);
     // This method will be called once per scheduler run
-    leftShooterMotor.setVoltage(shooterController.calculate(shooterEncoder.getVelocity()));
   }
 }

@@ -20,4 +20,7 @@ public final class Constants {
     public static final int kLeftShooterMotorCanId = 0; // TBD
     public static final int kRightShooterMotorCanId = 0; // TBD
   }
+  public static final class IntakeConstants {
+    public static final double kPivotGearRatio = 48.0 / 16;
+  }
 }

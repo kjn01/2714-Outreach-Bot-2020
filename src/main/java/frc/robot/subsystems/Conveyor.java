@@ -26,6 +26,8 @@ public class Conveyor extends SubsystemBase {
     horizontalConveyor.setIdleMode(IdleMode.kBrake);
     verticalConveyor.setIdleMode(IdleMode.kBrake);
 
+    horizontalConveyor.setInverted(true);
+
   }
 
   public void intake() {

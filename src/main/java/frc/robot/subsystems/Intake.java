@@ -24,9 +24,9 @@ public class Intake extends SubsystemBase {
   private PIDController pivotController;
 
   public Intake() {
-    leftPivotMotor = new CANSparkMax(0, MotorType.kBrushless);
-    rightPivotMotor = new CANSparkMax(0, MotorType.kBrushless);
-    rollerMotor = new CANSparkMax(0, MotorType.kBrushless);
+    leftPivotMotor = new CANSparkMax(IntakeConstants.kPivotLeftCanId, MotorType.kBrushless);
+    rightPivotMotor = new CANSparkMax(IntakeConstants.kPivotRightCanId, MotorType.kBrushless);
+    rollerMotor = new CANSparkMax(IntakeConstants.kRollerCanId, MotorType.kBrushless);
     pivotEncoder = leftPivotMotor.getAbsoluteEncoder(Type.kDutyCycle);
 
     leftPivotMotor.setIdleMode(IdleMode.kBrake);
@@ -59,6 +59,10 @@ public class Intake extends SubsystemBase {
 
   public void extake() {
     rollerMotor.setVoltage(-2);
+  }
+
+  public void stop() {
+    rollerMotor.setVoltage(0);
   }
 
   @Override

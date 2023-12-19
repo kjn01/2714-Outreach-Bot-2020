@@ -22,5 +22,9 @@ public final class Constants {
   }
   public static final class IntakeConstants {
     public static final double kPivotGearRatio = 48.0 / 16;
+    public static final int kRollerCanId = 4;
+    public static final int kPivotRightCanId = 19;
+    public static final int kPivotLeftCanId = 10;
+
   }
 }

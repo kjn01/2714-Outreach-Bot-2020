@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private Intake m_intake = new Intake();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -41,6 +43,10 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    m_driverController.leftBumper().onTrue(new InstantCommand(() -> m_intake.setPivotAngle(0)));
+    m_driverController.rightBumper().onTrue(new InstantCommand(() -> m_intake.setPivotAngle(0)));
+    m_driverController.a().onTrue(new InstantCommand(() -> m_intake.intake())).onFalse(new InstantCommand(() -> m_intake.stop()));
+    m_driverController.b().onTrue(new InstantCommand(() -> m_intake.extake())).onFalse(new InstantCommand(() -> m_intake.stop()));
   }
 
   /**

@@ -51,6 +51,10 @@ public class RobotContainer {
                                     .onFalse(new InstantCommand(() -> m_conveyor.stop()));
     m_driverController.leftBumper().onTrue(new InstantCommand(() -> m_conveyor.extake()))
                                     .onFalse(new InstantCommand(() -> m_conveyor.stop()));
+    m_driverController.a().onTrue(new InstantCommand(() -> m_conveyor.horiz()))
+                                    .onFalse(new InstantCommand(() -> m_conveyor.stop()));
+    m_driverController.b().onTrue(new InstantCommand(() -> m_conveyor.vert()))
+                                    .onFalse(new InstantCommand(() -> m_conveyor.stop()));
   }
 
   /**

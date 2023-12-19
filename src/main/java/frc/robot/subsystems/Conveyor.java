@@ -45,6 +45,14 @@ public class Conveyor extends SubsystemBase {
     verticalConveyor.set(0);
   }
 
+  public void horiz() {
+    horizontalConveyor.set(0.5);
+  }
+
+  public void vert() {
+    verticalConveyor.set(0.5);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

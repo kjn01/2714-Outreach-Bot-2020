@@ -29,8 +29,8 @@ public class Intake extends SubsystemBase {
     rollerMotor = new CANSparkMax(IntakeConstants.kRollerCanId, MotorType.kBrushless);
     pivotEncoder = leftPivotMotor.getAbsoluteEncoder(Type.kDutyCycle);
 
-    leftPivotMotor.setIdleMode(IdleMode.kBrake);
-    rightPivotMotor.setIdleMode(IdleMode.kBrake);
+    leftPivotMotor.setIdleMode(IdleMode.kCoast);
+    rightPivotMotor.setIdleMode(IdleMode.kCoast);
 
     rollerMotor.setIdleMode(IdleMode.kCoast);
 
